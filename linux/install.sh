@@ -9,6 +9,7 @@ share="${XDG_DATA_HOME:-$HOME/.local/share}/layoutfixer"
 launcher="$HOME/.local/bin/layoutfixer"
 rule="/etc/udev/rules.d/70-layoutfixer.rules"
 autostart="${XDG_CONFIG_HOME:-$HOME/.config}/autostart/layoutfixer.desktop"
+desktop_file="${XDG_DATA_HOME:-$HOME/.local/share}/applications/layoutfixer.desktop"
 
 reload_udev() {
     sudo udevadm control --reload
@@ -18,7 +19,7 @@ reload_udev() {
 if [[ "${1:-}" == "--uninstall" ]]; then
     pkill -f "python3 -m layoutfixer" 2>/dev/null || true
     rm -rf -- "$share"
-    rm -f -- "$launcher" "$autostart"
+    rm -f -- "$launcher" "$autostart" "$desktop_file"
     if [[ -e "$rule" ]]; then
         sudo rm -f -- "$rule"
         reload_udev
@@ -50,6 +51,18 @@ cat >"$launcher" <<EOF
 cd "$share" && exec python3 -m layoutfixer "\$@"
 EOF
 chmod +x "$launcher"
+
+# Plasma and the desktop portal identify the app through this file.
+mkdir -p "$(dirname "$desktop_file")"
+cat >"$desktop_file" <<EOF
+[Desktop Entry]
+Type=Application
+Name=LayoutFixer
+Comment=Fix text typed on the wrong keyboard layout
+Exec=$launcher
+Icon=input-keyboard
+Categories=Utility;
+EOF
 
 echo "Installing the udev rule for keyboard access (asks for your password):"
 sudo install -m 0644 "$here/70-layoutfixer.rules" "$rule"
