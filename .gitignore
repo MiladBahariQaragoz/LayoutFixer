@@ -4,3 +4,9 @@ build/
 xcuserdata/
 /promo/
 /Resources/
+node_modules/
+.env
+.env.local
+.env.*.local
+dist/
+.next/
