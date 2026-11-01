@@ -1,0 +1,7 @@
+# Lets the person logged in at the seat read keyboards and pointers and create a virtual keyboard.
+# "uaccess" grants this only while their session is active, unlike adding them to the input group.
+# Any program they run gets the same access, so this does weaken Wayland's keylogging protection.
+SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT_KEYBOARD}=="1", TAG+="uaccess"
+SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT_MOUSE}=="1", TAG+="uaccess"
+SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT_TOUCHPAD}=="1", TAG+="uaccess"
+SUBSYSTEM=="misc", KERNEL=="uinput", OPTIONS+="static_node=uinput", TAG+="uaccess"
