@@ -10,6 +10,16 @@ Licensed under the Creative Commons Attribution-ShareAlike 4.0 International Lic
 (https://creativecommons.org/licenses/by-sa/4.0/). The files are included unmodified.
 The MIT license of this project does not apply to these files.
 
+## linux/data/de_50k.txt
+
+German word frequency list from **FrequencyWords** by Hermit Dave
+(https://github.com/hermitdave/FrequencyWords), file `content/2018/de/de_50k.txt`, derived from
+OpenSubtitles data.
+
+Licensed under the Creative Commons Attribution-ShareAlike 4.0 International License
+(https://creativecommons.org/licenses/by-sa/4.0/). The file is included unmodified.
+The MIT license of this project does not apply to this file.
+
 ## windows/data/words.txt
 
 Webster's Second International Dictionary word list (1934), in the public domain. It is the same
