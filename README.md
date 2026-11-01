@@ -4,7 +4,7 @@
 
 <p align="center">
   Typed a whole sentence with the wrong keyboard layout? Press <kbd>Tab</kbd>.<br>
-  A tiny app for <b>macOS</b> and <b>Windows</b> that fixes English ⇄ Persian layout mistakes as you type.
+  A tiny app for <b>macOS</b>, <b>Windows</b> and <b>KDE Plasma</b> that fixes English ⇄ Persian layout mistakes as you type.
 </p>
 
 <p align="center">
@@ -96,6 +96,11 @@ menu says *Add both an English and a Persian keyboard layout*, one of them is mi
 **Uninstall:** quit it from the tray, turn off **Start with Windows** if you turned it on, then
 delete the folder.
 
+### Linux (KDE Plasma on Wayland)
+
+From a clone of this repository, run `linux/install.sh`, then `layoutfixer`. It needs a udev rule for
+keyboard access, which is a security trade-off: see the [Linux guide](linux/README.md) first.
+
 ## How it works
 
 Every key has a twin on the other layout: `t` is also `ف`, `h` is also `ا`. LayoutFixer only
@@ -172,6 +177,7 @@ release ([`.github/workflows/release.yml`](.github/workflows/release.yml)).
 ```
 Sources/main.swift       Mac app: event tap, detection, popup, menu bar
 windows/src/             Windows app: keyboard hook, detection, popup, tray
+linux/                   Linux app for KDE Plasma: evdev, detection, notification, tray
 Resources/               word lists and icons (shared by both apps)
 icon/                    icon and cover drawing scripts (run scripts/make-icons.sh)
 scripts/build.sh         builds build/LayoutFixer.app (--zip for a release zip)
